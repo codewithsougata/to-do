@@ -2,21 +2,22 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+// Firebase configuration from .env file
 const firebaseConfig = {
-  apiKey: "AIzaSyBsc_gir4UGFK0s6d4OgqMWOZa2p6DReqE",
-  authDomain: "react-to-do-list-2d0d3.firebaseapp.com",
-  databaseURL: "https://react-to-do-list-2d0d3-default-rtdb.firebaseio.com",
-  projectId: "react-to-do-list-2d0d3",
-  storageBucket: "react-to-do-list-2d0d3.firebasestorage.app",
-  messagingSenderId: "815419559709",
-  appId: "1:815419559709:web:7d185a24cb2399b0d5dbf4",
-  measurementId: "G-CJPJD7EZD6"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Export auth and Firestore instances
+// Export Auth & Firestore
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
