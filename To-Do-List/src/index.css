@@ -1,1 +1,165 @@
 @import "tailwindcss";
+
+/* ── Base ───────────────────────────────────────────── */
+* {
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  cursor: none !important; /* hide default cursor everywhere */
+}
+
+body {
+  background: #000;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Custom Cursor ──────────────────────────────────── */
+#cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 10px; height: 10px;
+  background: #818cf8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s, height 0.15s, background 0.15s;
+  box-shadow: 0 0 10px #818cf8, 0 0 20px #818cf8aa;
+}
+
+#cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 2px solid rgba(129, 140, 248, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+/* Cursor expand on hover over interactive elements */
+a:hover ~ #cursor-ring,
+button:hover ~ #cursor-ring,
+input:hover ~ #cursor-ring,
+select:hover ~ #cursor-ring {
+  width: 50px; height: 50px;
+}
+
+/* Cursor states applied via JS classes */
+.cursor-hover #cursor-dot {
+  width: 16px; height: 16px;
+  background: #a5b4fc;
+}
+.cursor-hover #cursor-ring {
+  width: 52px; height: 52px;
+  border-color: rgba(165, 180, 252, 0.7);
+}
+.cursor-click #cursor-dot {
+  width: 8px; height: 8px;
+  background: #fff;
+}
+
+/* ── Custom Scrollbar ───────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #3730a3; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+/* ── Glassmorphism ──────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ── Priority borders ───────────────────────────────── */
+.priority-high   { border-left: 4px solid #ef4444; }
+.priority-medium { border-left: 4px solid #f59e0b; }
+.priority-low    { border-left: 4px solid #22c55e; }
+
+/* ── Task card hover ────────────────────────────────── */
+.task-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.task-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.2);
+  background: rgba(99, 102, 241, 0.06) !important;
+}
+
+/* ── Glow Button ────────────────────────────────────── */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-glow:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.6), 0 0 40px rgba(139, 92, 246, 0.3);
+}
+.btn-glow:active {
+  transform: scale(0.96);
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+}
+
+/* Ripple effect on buttons */
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  border-radius: inherit;
+}
+.btn-glow:active::after {
+  opacity: 1;
+  transform: scale(2.5);
+  transition: 0s;
+}
+
+/* ── Icon button hover ──────────────────────────────── */
+.icon-btn {
+  transition: color 0.2s, background 0.2s, transform 0.15s;
+}
+.icon-btn:hover {
+  transform: scale(1.15);
+}
+
+/* ── Filter tab hover ───────────────────────────────── */
+.filter-tab {
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.filter-tab:not(.active):hover {
+  background: rgba(99, 102, 241, 0.12);
+  color: #a5b4fc;
+  transform: scale(1.05);
+}
+
+/* ── Input focus glow ───────────────────────────────── */
+.input-glow {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-glow:focus {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2), 0 0 12px rgba(99, 102, 241, 0.15);
+  outline: none;
+}
+
+/* ── Fade-in animation ──────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeInUp 0.3s ease forwards; }
+
+/* ── Pulse glow for landing blobs ───────────────────── */
+@keyframes blobPulse {
+  0%, 100% { opacity: 0.18; transform: scale(1); }
+  50%       { opacity: 0.28; transform: scale(1.08); }
+}
+.blob { animation: blobPulse 6s ease-in-out infinite; }
+.blob-2 { animation: blobPulse 8s ease-in-out infinite reverse; }
