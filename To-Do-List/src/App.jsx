@@ -402,18 +402,18 @@ function App() {
               onChange={(e) => setNewTask(e.target.value)}
               placeholder="What do you need to do?"
               required
-              className="input-glow w-full bg-black border border-slate-800 text-white placeholder-slate-600
+              className="input-glow w-full bg-white/5 border border-slate-800 text-white placeholder-slate-600
                 rounded-xl px-4 py-3 text-sm"
             />
             <div className="flex flex-wrap gap-2">
               <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)}
-                className="input-glow flex-1 min-w-[130px] bg-black border border-slate-800 text-slate-400
+                className="input-glow flex-1 min-w-[130px] bg-white/5 border border-slate-800 text-slate-400
                   rounded-xl px-3 py-2 text-sm" />
               <input type="time" value={dueTime} onChange={(e) => setDueTime(e.target.value)}
-                className="input-glow flex-1 min-w-[110px] bg-black border border-slate-800 text-slate-400
+                className="input-glow flex-1 min-w-[110px] bg-white/5 border border-slate-800 text-slate-400
                   rounded-xl px-3 py-2 text-sm" />
               <select value={priority} onChange={(e) => setPriority(e.target.value)}
-                className="input-glow flex-1 min-w-[110px] bg-black border border-slate-800 text-slate-400
+                className="input-glow flex-1 min-w-[110px] bg-white/5 border border-slate-800 text-slate-400
                   rounded-xl px-3 py-2 text-sm">
                 <option value="high">🔴 High</option>
                 <option value="medium">🟡 Medium</option>
